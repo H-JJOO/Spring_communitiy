@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dev.hjjoo.community.board.BoardMapper">
+
+    <insert id="insBoard">
+        INSERT INTO t_board
+        (icategory, title, ctnt, iuser)
+        VALUES
+        (${icategory}, #{title}, #{ctnt}, ${iuser})
+    </insert>
+
+    <select id="selBoardList" resultType="BoardVo">
+        SELECT A.iboard, A.title, A.iuser, A.hits, A.rdt
+            , B.nm AS writernm, B.profileimg
+        FROM t_board A
+        LEFT JOIN t_user B
+        ON A.iuser = B.iuser
+        WHERE A.isdel = 0
+        AND A.icategory = ${icategory}
+        ORDER BY A.iboard DESC
+    </select>
+
+    <select id="selBoard" resultType="BoardVo">
+        SELECT A.iboard, A.icategory, A.title, A.iuser, A.ctnt, A.hits, A.rdt, A.lastip
+            , B.nm AS writernm, B.profileimg
+            , C.nm AS categorynm
+        FROM t_board A
+        LEFT JOIN t_user B
+        ON A.iuser = B.iuser
+        LEFT JOIN t_board_category C
+        ON A.icategory = C.icategory
+        WHERE A.isdel = 0
+        AND A.iboard = ${iboard}
+    </select>
+
+    <update id="addHits">
+        UPDATE t_board
+        SET hits = hits + 1
+        , lastip = #{lastip}
+        WHERE iboard = ${iboard}
+    </update>
+
+    <update id="updBoard">
+        UPDATE t_board
+        <set>
+            <if test=" title != null and title != '' ">
+                title = #{title},
+            </if>
+            <if test=" ctnt != null and ctnt != '' ">
+                ctnt = #{ctnt},
+            </if>
+            <if test=" isdel == 1 ">
+                isdel = 1
+            </if>
+        </set>
+        WHERE iboard = ${iboard}
+        AND iuser = ${iuser}
+    </update>
+
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 자바 파일에 있는 빈등록 애노테이션을 검색을 하고 찾은 다음에 빈등록을 해준다. 기준이되는 기본 패키지명을 설정 (Bean 등록 찾는거), 추가-->
+    <context:component-scan base-package="dev.hjjoo.community"/>
+
+    <!-- Enables the Spring MVC @Controller programming model -->
+    <!-- @Controller 활성화 => 주소값 맵핑할 수 있다. HandlerMapping 이 관리, 추가-->
+    <mvc:annotation-driven/>
+
+    <!--res 폴더 쓰려면 /res 는 res 로 처리하자자, 모든요청을 dispatcherServlet 이 받기때문에,
+     location 에 준 /res/ 가 접근하도록 설정, 추가-->
+    <mvc:resources mapping="/res/**" location="/res/"/>
+    <!--이미지 배포?-->
+    <mvc:resources mapping="/images/**" location="file:///C:/upload/images/" />
+    <!--이미지 배포?-->
+
+    <!--웹 서버 화면만들때는 필수,(tiles 쓰게되면서 두번째로 밀리게 해줄거임, 1차 주소값 만있으면 애가 응답) 추가-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--SETTER 메소드 이용, value 에 올수 있는 타입 원시타입 + String, String 을 제외한 참조타입은 ref 로 줘야한다.-->
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"/>
+        <property name="order" value="2"/>
+    </bean>
+
+    <!--먼저 물어봄, 1,2차 주소값 있으면 얘가 응답-->
+    <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
+        <property name="order" value="1"/>
+    </bean>
+    <!--웹 서버 화면만들때는 필수, tiles 추가-->
+
+    <!--tiles 세팅-->
+    <bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <!--SETTER 호출-->
+        <property name="definitions"><!--List<String>-->
+            <list>
+                <value>/WEB-INF/tiles.xml</value>
+            </list>
+        </property>
+        <!--이거 등록해야 tiles 에 부속품으로 쓸수있음-->
+        <property name="preparerFactoryClass" value="org.springframework.web.servlet.view.tiles3.SpringBeanPreparerFactory"/>
+        <!--이거 등록해야 tiles 에 부속품으로 쓸수있음-->
+    </bean>
+    <!--tiles 세팅-->
+
+
+</beans>
