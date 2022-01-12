@@ -64,20 +64,30 @@ public class UserService {
         return result == null ? 1 : 0;
     }
 
-    //이미지 업로드 처리 및 저장 파일명 리턴
+    //이미지 업로드(oldFile 삭제) 처리 및 저장 파일명 리턴
     public String uploadProfileImg(MultipartFile mf) {
         if (mf == null) {return null;}
-        final String PATH = Const.UPLOAD_IMG_PATH + "/user/" + userUtils.getLoginUserPk();
-        String fileNm = myFileUtils.saveFile(PATH, mf);
+
+        UserEntity loginUser = userUtils.getLoginUser();//session 값 쓰기위해서
+
+        final String PATH = Const.UPLOAD_IMG_PATH + "/user/" + loginUser.getIuser();//경로 C:/upload/images/user/2
+        String fileNm = myFileUtils.saveFile(PATH, mf);//파일저장
         System.out.println("fileNm : " + fileNm);
         if (fileNm == null) { return null; }
 
-        //파일명을 t_user 테이블에 update
-        UserEntity entity = new UserEntity();
-        entity.setIuser(userUtils.getLoginUserPk());
-        entity.setProfileimg(fileNm);
+        UserEntity entity = new UserEntity();//UserEntity 객체 생성
+        entity.setIuser(loginUser.getIuser());//UserEntity 의 iuser 값에 로그인한 유저의 iuser 값 입력
 
-        mapper.updUser(entity);
+        //기존 파일명
+        String oldFilePath = PATH + "/" + userUtils.getLoginUser().getProfileimg();//C:/upload/images/user/2/프로필사진값?
+        myFileUtils.delFile(oldFilePath);//기존 파일 삭제
+
+        //파일명을 t_user 테이블에 update
+        entity.setProfileimg(fileNm);//파일명 set
+        mapper.updUser(entity);//업데이트
+
+        //세션 프로필 파일명을 수정해 준다.
+        loginUser.setProfileimg(fileNm);
 
         return fileNm;
     }

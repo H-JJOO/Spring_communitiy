@@ -45,8 +45,15 @@
     const setProfileImg = (data) => {
         if (!data.result) {return;}
 
+        //프로필 이미지
         const iuser = dataElem.dataset.iuser;
-        const img = profileViewElem.querySelector('img');
-        img.src = `/images/user/${iuser}/${data.result}`;
+        const src = `/images/user/${iuser}/${data.result}`;
+
+        const profileImgElem = profileViewElem.querySelector('img');
+        profileImgElem.src = src;
+
+        //헤더 이미지
+        const headerProfileImgElem = document.querySelector('#header-profileimg');
+        headerProfileImgElem.src = src;
     }
 }

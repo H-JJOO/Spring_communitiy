@@ -33,6 +33,14 @@ public class MyFileUtils {
         if (isDelFolder) {file.delete();}
     }
 
+    //파일 삭제
+    public void delFile(String path) {
+        File f = new File(path);
+        if (f.exists()) {
+            f.delete();
+        }
+    }
+
     //랜덤파일명 만들기(순수하게?)
     public String getRandomFileNm() {
         return UUID.randomUUID().toString();//랜덤한 문자열
@@ -61,7 +69,7 @@ public class MyFileUtils {
     public String saveFile(String path, MultipartFile mf) {
         makeFolders(path);
         String randomFileNm = getRandomFileNm(mf.getOriginalFilename());
-        File targetFile = new File(path, randomFileNm);// , 주면 자동으로 / 준다, path/randomFileNm 해준다
+        File targetFile = new File(path, randomFileNm);// , 주면 자동으로 / 준다, path/randomFileNm 해준다.
         try {
             mf.transferTo(targetFile);
         } catch (Exception e) {
