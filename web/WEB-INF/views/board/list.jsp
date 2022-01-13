@@ -1,11 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="my" uri="tld/MyCustomJstlTag.tld" %>
 <div>
-    <c:if test="${sessionScope.loginUser != null}">
-    <a href="/board/write?icategory=${requestScope.icategory}"><button>글쓰기</button></a>
-    </c:if>
-    <h1>보드 리스트</h1>
+    <div>
+        <c:if test="${sessionScope.loginUser != null}">
+        <a href="/board/write?icategory=${requestScope.icategory}"><button>글쓰기</button></a>
+        </c:if>
+    </div>
     <c:choose>
         <c:when test="${fn:length(requestScope.list) == 0}">
             글이 없습니다.
@@ -20,11 +22,18 @@
                     <th>reg date</th>
                 </tr>
                 <c:forEach items="${requestScope.list}" var="item">
-                    <tr class="record" data-iboard="${item.iboard}">
+                    <tr class="record" data-iboard="${item.iboard}" class="font-spot">
                         <td>${item.iboard}</td>
                         <td><c:out value="${item.title}"/></td>
                         <td>${item.hits}</td>
-                        <td>${item.writernm}</td>
+                        <td>
+                            <div class="flex-container flex-align-center">
+                                <span class="m-r-5">${item.writernm}</span>
+                                <my:profileImg classVal="circular--img circular--size30"
+                                               iuser="${item.iuser}"
+                                               profileImgVal="${item.profileimg}"/>
+                            </div>
+                        </td>
                         <td>${item.rdt}</td>
                     </tr>
                 </c:forEach>

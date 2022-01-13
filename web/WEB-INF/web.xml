@@ -46,12 +46,12 @@
     </filter-mapping>
     <!-- filter 추가-->
 
-    <!--MyCustomTag.tld 추가하기 위한 작업-->
+    <!--MyCustomJstlTag.tld 추가하기 위한 작업-->
     <jsp-config>
         <taglib>
-            <taglib-uri>tld/MyCustomTag.tld</taglib-uri>
-            <taglib-location>/WEB-INF/tlds/MyCustomTag.tld</taglib-location>
+            <taglib-uri>tld/MyCustomJstlTag.tld</taglib-uri>
+            <taglib-location>/WEB-INF/tlds/MyCustomJstlTag.tld</taglib-location>
         </taglib>
     </jsp-config>
-    <!--MyCustomTag.tld 추가하기 위한 작업-->
+    <!--MyCustomJstlTag.tld 추가하기 위한 작업-->
 </web-app>

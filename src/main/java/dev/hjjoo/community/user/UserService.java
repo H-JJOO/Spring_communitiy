@@ -3,6 +3,7 @@ package dev.hjjoo.community.user;
 import dev.hjjoo.community.Const;
 import dev.hjjoo.community.MyFileUtils;
 import dev.hjjoo.community.UserUtils;
+import dev.hjjoo.community.model.UserDto;
 import dev.hjjoo.community.model.UserEntity;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.BeanUtils;
@@ -90,5 +91,17 @@ public class UserService {
         loginUser.setProfileimg(fileNm);
 
         return fileNm;
+
+    }
+
+    public int changePassword(UserDto dto) {
+        dto.setIuser(userUtils.getLoginUserPk());
+        UserEntity dbUser = mapper.selUser(dto);
+        if(!BCrypt.checkpw(dto.getCurrentupw(), dbUser.getUpw())) {
+            return 2; //현재비밀번호 다름
+        }
+        String hashedPw = BCrypt.hashpw(dto.getUpw(), BCrypt.gensalt());
+        dto.setUpw(hashedPw);
+        return mapper.updUser(dto);
     }
 }

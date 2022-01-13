@@ -2,8 +2,6 @@
 
 a {list-style: none;}
 
-
-
 ul > li:not(:first-child) { margin-top: 10px; }
 
 .submenu-section { display: grid; grid-template-columns: 150px 1fr; height: 100%; }

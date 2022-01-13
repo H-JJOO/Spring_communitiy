@@ -1,6 +1,7 @@
 package dev.hjjoo.community.user;
 
 import dev.hjjoo.community.Const;
+import dev.hjjoo.community.model.UserDto;
 import dev.hjjoo.community.model.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -81,12 +82,29 @@ public class UserController {
     @ResponseBody
     @PostMapping("/mypage/profile")
     public Map<String, String> mypageProfileProc(MultipartFile profileimg) {
-        String filrNm = service.uploadProfileImg(profileimg);
-        System.out.println("fileName : " + profileimg.getOriginalFilename());
+        String fileNm = service.uploadProfileImg(profileimg);
         Map<String, String> result = new HashMap<>();
-        result.put("result", filrNm);
+        result.put("result", fileNm);
         return result;
     }
 
+    @GetMapping("/mypage/password")
+    public void password() {}
 
+    @PostMapping("/mypage/password")
+    public String passwordProc(UserDto dto, HttpSession hs, RedirectAttributes rAttr) {
+        int result = service.changePassword(dto);
+        if(result != 1) {
+            switch(result) {
+                case 0:
+                    rAttr.addFlashAttribute(Const.MSG, "비밀번호 변경에 실패하였습니다.");
+                    break;
+                case 2:
+                    rAttr.addFlashAttribute(Const.MSG, "현재 비밀번호를 확인해 주세요.");
+                    break;
+            }
+            return "redirect:/user/mypage/password";
+        }
+        return "redirect:/user/logout";
+    }
 }
