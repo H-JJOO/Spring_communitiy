@@ -3,6 +3,7 @@ package dev.hjjoo.community.board;
 import dev.hjjoo.community.UserUtils;
 import dev.hjjoo.community.model.BoardDto;
 import dev.hjjoo.community.model.BoardEntity;
+import dev.hjjoo.community.model.BoardPrevNextVo;
 import dev.hjjoo.community.model.BoardVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,6 +44,10 @@ public class BoardService {
             }
         }
         return detail;
+    }
+
+    public BoardPrevNextVo selPrevNext(BoardVo vo) {
+        return mapper.selPrevNext(vo);
     }
 
     public int updBoard(BoardEntity entity) {

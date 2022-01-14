@@ -22,4 +22,48 @@
             location.href = `/board/mod?iboard=${iboard}`;
         });
     }
+
+    const cmtFrmElem = document.querySelector('#cmtFrm');
+    if (cmtFrmElem) {// true : 로그인 한 상태
+        cmtFrmElem.btn_submit.addEventListener('click', () => {
+            const cmtVal = cmtFrmElem.ctnt.value;
+            if (cmtVal.length === 0) {
+                alert('댓글 내용을 작성해 주세요.');
+                return;
+            } else if(regex.isWrongWith('ctnt', cmtVal)) {
+                alert(regex.msg.ctnt);
+            } else {
+                insBoardCmtAjax(cmtVal);
+            }
+        });
+
+        const insBoardCmtAjax = (val) => {
+            fetch('/board/cmt', {//인자 3개 'method', 'headers', 'body'
+                'method' : 'post',
+                'headers' : {
+                    'Content-Type': 'application/json'
+                },
+                'body' : JSON.stringify( {
+                    'iboard' : dataElem.dataset.iboard,
+                    'ctnt' : val
+                })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log((data));
+                }).catch(err => {
+                console.log(err);
+            });
+        }
+    }
 }
+
+{
+
+}
+
+
+
+
+
+

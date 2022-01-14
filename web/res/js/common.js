@@ -17,12 +17,14 @@ const regex = {
     id : /^([a-zA-Z0-9]{4,15})$/, //대소문자 + 숫자 조합으로 4~15글자 인 경우만 OK!
     pw : /^([a-zA-Z0-9!@_]{4,20}$)/, //대소문자+숫자+!@_ 조합으로 4~20글자 인 경우만 OK!
     nm : /^([가-힣]{2,5})$/, //한글조합 2~5글자 (영어, 특수기호X) 인 경우만 OK!
+    ctnt : /^[^><]*$/,
     msg : {
         id : '대소문자 + 숫자 조합으로 4~15글자',
         pw : '대소문자+숫자+!@_ 조합으로 4~20글자',
         nm : '한글조합 2~5글자',
+        ctnt : '<, > 는 사용할 수 없습니다.',
     },
     isWrongWith : function (target, val) {
-        return !this[target].test(val);
+        return (target && val) ? !this[target].test(val) : true;//둘다 true 라면 val 로 확인 둘중 하나라도 false 라면 true 넘기기
     }
 };

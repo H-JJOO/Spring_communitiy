@@ -5,7 +5,7 @@
 <div class="h-all each-container">
     <div>
         <c:if test="${sessionScope.loginUser != null}">
-        <a href="/board/write?icategory=${requestScope.icategory}"><button class="bac-color-orange border h-30  w-100 font-color-white m-5 pointer">글쓰기</button></a>
+        <a href="/board/write?icategory=${requestScope.icategory}"><button class="bac-color-orange border border-025 h-30  w-100 font-color-white m-5 pointer">글쓰기</button></a>
         </c:if>
     </div>
     <c:choose>
