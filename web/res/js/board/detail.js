@@ -23,8 +23,15 @@
         });
     }
 
+    //댓글입력
     const cmtFrmElem = document.querySelector('#cmtFrm');
     if (cmtFrmElem) {// true : 로그인 한 상태
+
+        //input-text ctnt 에서 엔터치면 submit 날아가기 때문에 막는다.
+        cmtFrmElem.addEventListener('submit', (e) => {
+            e.preventDefault();
+        });
+
         cmtFrmElem.btn_submit.addEventListener('click', () => {
             const cmtVal = cmtFrmElem.ctnt.value;
             if (cmtVal.length === 0) {
@@ -37,29 +44,17 @@
             }
         });
 
+        //Ajax : 댓글입력
         const insBoardCmtAjax = (val) => {
-            fetch('/board/cmt', {//인자 3개 'method', 'headers', 'body'
-                'method' : 'post',
-                'headers' : {
-                    'Content-Type': 'application/json'
-                },
-                'body' : JSON.stringify( {
-                    'iboard' : dataElem.dataset.iboard,
-                    'ctnt' : val
-                })
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log((data));
-                }).catch(err => {
-                console.log(err);
-            });
+            const param = {//{ = 다음 시작은 객체생성(key, value), function 으로 new 도 가능
+                'iboard': dataElem.dataset.iboard,
+                'ctnt': val
+            };
+            myFetch.post('/board/cmt', (data) => {
+                console.log(data);
+            }, param);
         }
     }
-}
-
-{
-
 }
 
 

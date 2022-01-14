@@ -28,3 +28,29 @@ const regex = {
         return (target && val) ? !this[target].test(val) : true;//둘다 true 라면 val 로 확인 둘중 하나라도 false 라면 true 넘기기
     }
 };
+
+//Ajax 편하게 쓰기~
+const myFetch = {//객체를 담고있는 변수
+    send: function(fetchObj, cb) {
+        return fetchObj//promise 객체
+            .then(res => res.json())//=> 에로우펑션에 {} 없다는 것은 리턴하겠다는 의미, 리턴을하면 then 에 연결된 함수는 promise 이던 아니던 promise 객체로 감싸준다
+            .then(cb)
+            .catch(e => { console.log(e) });
+    },
+    get: function(url, cb, param) {
+        if(param) {
+            const queryString = '?' + Object.keys(param).map(key => `${key}=${param[key]}`).join('&');
+            url += queryString;
+            // url = url + queryString;
+
+        }
+        return this.send(fetch(url), cb);
+    },
+    post: function(url, cb, param) {//param 은 (Obj)객체여야만 한다.
+        return this.send(fetch(url, {//객체 안에있는 멤버필드에 접근(send 메소드를 호출)
+            'method': 'post',
+            'headers': { 'Content-Type': 'application/json' },
+            'body': JSON.stringify(param)//param 객체를 Json 형태로 바꿔줌, 즉 문자열로 바꿔줌(key : '', value : '')
+        }), cb);
+    }
+}

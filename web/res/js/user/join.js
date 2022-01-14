@@ -76,30 +76,25 @@
         const idBtnChkElem = joinFrmElem.querySelector('#id-btn-chk');
         idBtnChkElem.addEventListener('click', () => {
             const idVal = joinFrmElem.uid.value;
-            if (idVal.length < 4) {
+            if(idVal.length < 4) {
                 alert('아이디는 4자 이상 작성해 주세요.');
                 return;
-            }
-            if (!idRegex.test(idVal)) {
+            } else if(!idRegex.test(idVal)) {
                 alert(msg1);
                 return;
             }
-            //문자열안에 변수값 넣기 편하다(`), GET 방식은 무조건 쿼리스트링으로
+            /*
             fetch(`/user/idChk/${idVal}`)
-                .then(res => res.json())
-                .then((data) => {
-                    setIdChkMsg(data);
-                }).catch((e) => {
-                    console.log(e)
-                });
+            .then(res => res.json())
+            .then((data) => {
+                setIdChkMsg(data);
+            }).catch((e)=> {
+               console.log(e);
             });
-        }
-
-    const resetBtn = joinFrmElem.querySelector('#reset');
-    if (resetBtn) {
-        resetBtn.addEventListener('click', () => {
-            const idChkMsgElem = joinFrmElem.querySelector('#id-chk-msg');
-            idChkMsgElem.innerText = '';
-        })
+             */
+            myFetch.get(`/user/idChk/${idVal}`, (data) => {
+                setIdChkMsg(data);
+            });
+        });
     }
 }

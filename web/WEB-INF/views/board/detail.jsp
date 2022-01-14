@@ -17,19 +17,21 @@
     </div>
 </c:if>
 <div>
+    <hr class="m-5">
     <div>카테고리 : ${data.categorynm}</div>
     <div>조회수 : ${data.hits} | 등록일시 : ${data.rdt}</div>
     <div>글쓴이 : ${data.writernm}</div>
     <div>제목 : <c:out value="${data.title}"/></div>
-    <hr>
+    <hr class="m-5">
     <div><c:out value="${data.ctnt}"/></div>
+    <hr class="m-5">
 </div>
 <div>
     <c:if test="${sessionScope.loginUser != null}" >
         <div class="m-t-20">
             <form id="cmtFrm">
                 <input type="text" name="ctnt">
-                <input type="button" id="btn_submit" value="댓글달기">
+                <input type="button" id="btn_submit" value="댓글달기" class="bac-color-orange border-025 border w-70 h-20 font-color-white pointer">
             </form>
         </div>
     </c:if>
