@@ -4,16 +4,16 @@
 <div id="data" data-icategory="${data.icategory}" data-iboard="${data.iboard}"></div>
 <div>
     <c:if test="${requestScope.prevNext.previboard > 0}">
-        <a href="/board/detail?iboard=${requestScope.prevNext.previboard}"><button class="bac-color-orange m-5 border border-025 font-color-white w-60 h-20 pointer">이전글</button></a>
+        <a href="/board/detail?iboard=${requestScope.prevNext.previboard}"><button class="bac-color-yellow m-5 border border-025 font-color-black w-60 h-20 pointer">이전글</button></a>
     </c:if>
     <c:if test="${requestScope.prevNext.nextiboard > 0}">
-        <a href="/board/detail?iboard=${requestScope.prevNext.nextiboard}"><button class="bac-color-orange m-5 border border-025 font-color-white w-60 h-20 pointer">다음글</button></a>
+        <a href="/board/detail?iboard=${requestScope.prevNext.nextiboard}"><button class="bac-color-yellow m-5 border border-025 font-color-black w-60 h-20 pointer">다음글</button></a>
     </c:if>
 </div>
 <c:if test="${sessionScope.loginUser.iuser == data.iuser}">
     <div>
-        <button class="bac-color-orange m-5 border border-025 font-color-white w-60 h-20 pointer" id="modBtn">수정</button>
-        <button class="bac-color-orange m-5 border border-025 font-color-white w-60 h-20 pointer" id="delBtn">삭제</button>
+        <button class="bac-color-yellow m-5 border border-025 font-color-black w-60 h-20 pointer" id="modBtn">수정</button>
+        <button class="bac-color-yellow m-5 border border-025 font-color-black w-60 h-20 pointer" id="delBtn">삭제</button>
     </div>
 </c:if>
 <div>
@@ -31,9 +31,11 @@
         <div class="m-t-20">
             <form id="cmtFrm">
                 <input type="text" name="ctnt">
-                <input type="button" id="btn_submit" value="댓글달기" class="bac-color-orange border-025 border w-70 h-20 font-color-white pointer">
+                <input type="button" id="btn_submit" value="댓글달기" class="bac-color-orange border-025 border w-70 h-20 font-color-black pointer">
             </form>
         </div>
     </c:if>
-    <div class="m-t-20">댓글 리스트</div>
+    <div class="m-t-20">
+
+    </div>
 </div>

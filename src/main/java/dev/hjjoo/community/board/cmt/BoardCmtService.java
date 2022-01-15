@@ -5,6 +5,8 @@ import dev.hjjoo.community.model.BoardCmtEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BoardCmtService {
 
@@ -14,5 +16,9 @@ public class BoardCmtService {
     public int insBoardCmt(BoardCmtEntity entity) {
         entity.setIuser(userUtils.getLoginUserPk());
         return mapper.insBoardCmt(entity);
+    }
+
+    public List<BoardCmtEntity> selBoardCmtList(BoardCmtEntity entity) {
+        return mapper.selBoardCmtList(entity);
     }
 }

@@ -1,7 +1,9 @@
 package dev.hjjoo.community.board.cmt;
 
+import dev.hjjoo.community.Const;
 import dev.hjjoo.community.model.BoardCmtEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -20,5 +22,10 @@ public class BoardCmtController {
         result.put("result", service.insBoardCmt(entity));
         return result;
     }
-
+    //이거아니야 ㅠㅠ
+    @GetMapping
+    public String list(BoardCmtEntity entity, Model model)  {
+        model.addAttribute(Const.LIST, service.selBoardCmtList(entity));
+        return "board/cmt";
+    }
 }

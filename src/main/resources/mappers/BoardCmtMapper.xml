@@ -11,4 +11,12 @@
         (${iboard}, ${iuser}, #{ctnt})
     </insert>
 
+    <select id="selBoardCmtList" resultType="BoardCmtEntity">
+        SELECT A.ctnt, A.rdt, B.nm AS writernm
+        FROM t_board_cmt A
+        LEFT JOIN t_user B
+        ON A.iuser = B.iuser
+        WHERE A.iboard = ${iboard}
+    </select>
+
 </mapper>

@@ -4,10 +4,11 @@ a { text-decoration: none; color: black; }
 
 ul, li {list-style: none; margin: 10px;}
 
-h1  {color: orange; }
+h1  {color: yellow; }
 
-.bac-color-orange {background-color: orange; }
+.bac-color-yellow {background-color: yellow; }
 
+.border-yellow {border-color: yellow; }
 .border-025 {border-radius: 0.25rem;}
 .border {border: none;}
 
@@ -25,7 +26,7 @@ input {margin-bottom: 3px;}
 section {margin: 1%; border: 1px solid black; padding: 5px;}
 
 html, body { height: 100%; scroll-behavior: auto;}
-header { background-color: coral; }
+header { background-color: yellow; }
 
 footer { background-color: black; color: white; display: flex; flex-direction: row; justify-content: center; align-items: center; }
 
@@ -38,6 +39,7 @@ th, td {padding: 7px; }
 .flex-container { display: flex; height: 100%; width: 100%; }
 .flex-direction-column { flex-direction: column; }
 
+.font-color-red { color: red;}
 .font-color-white { color: #fff; }
 .font-color-black { color: #000;}
 .font-size-5 {font-size: 5px;}
@@ -95,7 +97,7 @@ th, td {padding: 7px; }
 .submenu-selected a { color: #fff; }
 
 .w-all {width: 100%;}
-.welcome { margin-left: auto; color: white;}
+.welcome { margin-left: auto; color: black;}
 .w-20 { width: 20px;}
 .w-60 { width: 60px;}
 .w-70 { width: 70px;}

@@ -2,14 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <div class="flex-container flex-center flex-direction-column">
-    <h1>[Orange]</h1>
+    <h1>[Lemon]</h1>
     <div class="m-20">Login</div>
     <div>${requestScope.msg}</div>
     <form action="/user/login" method="post" id="login-frm">
         <div><label><input class="h-30 w-250" type="text" name="uid" value="${requestScope.tryLogin.uid}" placeholder="아이디"></label></div>
         <div><label><input class="h-30 w-250" type="password" name="upw" placeholder="비밀번호"></label></div>
         <div class="d-sub-btn m-b-10">
-            <input type="submit" value="로그인" class="h-30 w-250 m-t-20 bac-color-orange border-025 border font-color-white pointer">
+            <input type="submit" value="로그인" class="h-30 w-250 m-t-20 bac-color-orange border-025 border font-color-black pointer">
         </div>
     </form>
     <span class="font-size-5">
