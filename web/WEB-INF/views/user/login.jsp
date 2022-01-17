@@ -9,7 +9,7 @@
         <div><label><input class="h-30 w-250" type="text" name="uid" value="${requestScope.tryLogin.uid}" placeholder="아이디"></label></div>
         <div><label><input class="h-30 w-250" type="password" name="upw" placeholder="비밀번호"></label></div>
         <div class="d-sub-btn m-b-10">
-            <input type="submit" value="로그인" class="h-30 w-250 m-t-20 bac-color-orange border-025 border font-color-black pointer">
+            <input type="submit" value="로그인" class="h-30 w-250 m-t-20 bac-color-yellow border-025 border font-color-black pointer">
         </div>
     </form>
     <span class="font-size-5">

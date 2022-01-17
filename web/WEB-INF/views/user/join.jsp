@@ -16,8 +16,8 @@
             <label>male <input type="radio" name="gender" value="1"></label>
         </div>
         <div class="flex-align-center">
-            <input class="bac-color-orange border h-30 m-t-10 w-100 font-color-white" type="submit" value="JOIN">
-            <input class="bac-color-orange border h-30 m-t-10 w-100 font-color-white" type="reset" value="RESET">
+            <input class="bac-color-yellow border h-30 m-t-10 w-100 font-color-black" type="submit" value="JOIN">
+            <input class="bac-color-yellow border h-30 m-t-10 w-100 font-color-black" type="reset" value="RESET">
         </div>
     </form>
 </div>

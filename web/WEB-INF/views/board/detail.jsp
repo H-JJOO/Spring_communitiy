@@ -1,7 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<div id="data" data-icategory="${data.icategory}" data-iboard="${data.iboard}"></div>
+<div id="data"
+     data-icategory="${data.icategory}"
+     data-iboard="${data.iboard}"
+     data-iuser="${sessionScope.loginUser.iuser}">
+</div>
 <div>
     <c:if test="${requestScope.prevNext.previboard > 0}">
         <a href="/board/detail?iboard=${requestScope.prevNext.previboard}"><button class="bac-color-yellow m-5 border border-025 font-color-black w-60 h-20 pointer">이전글</button></a>
@@ -31,11 +35,11 @@
         <div class="m-t-20">
             <form id="cmtFrm">
                 <input type="text" name="ctnt">
-                <input type="button" id="btn_submit" value="댓글달기" class="bac-color-orange border-025 border w-70 h-20 font-color-black pointer">
+                <input type="button" id="btn_submit" value="댓글달기" class="bac-color-yellow border-025 border w-70 h-20 font-color-black pointer">
             </form>
         </div>
     </c:if>
-    <div class="m-t-20">
+    <div class="m-t-20" id="cmt_list">
 
     </div>
 </div>
