@@ -167,8 +167,9 @@
                                 alert('댓글 수정에 실패하였습니다.')
                                 break;
                             case 1:
-                                item.ctnt = modInput.value;
-                                removeCancel();
+                                tdCell.innerText = modInput.value;
+                                item.ctnt = modInput.value;//이 코드 없으면 최초 detail 열었을대 입력된 값으로 뜬다.
+                                removeCancelBtn();
                                 break;
                         }
                     }, param);
@@ -183,10 +184,10 @@
                 cancelBtn.value = '취소';
                 cancelBtn.addEventListener('click', () => {
                     tdCell.innerText = item.ctnt;
-                    removeCancel();
+                    removeCancelBtn();
                 })
 
-                const removeCancel = () => {
+                const removeCancelBtn = () => {
                     modBtn.classList.remove('hidden');//toggle : 있으면 빼주고 없으면 넣어준다., 불안하니까 add 나중에 remove 도 해주면됨
                     delBtn.classList.remove('hidden');
                     cancelBtn.remove();
