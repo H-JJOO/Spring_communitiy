@@ -53,6 +53,13 @@ const myFetch = {//객체를 담고있는 변수
             'body': JSON.stringify(param)//param 객체를 Json 형태로 바꿔줌, 즉 문자열로 바꿔줌(key : '', value : '')
         }), cb);
     },
+    put : function(url, cb, param) {
+      return this.send(fetch(url, {
+          'method': 'put',
+          'headers': { 'Content-Type': 'application/json' },
+          'body': JSON.stringify(param)//param 객체를 Json 형태로 바꿔줌, 즉 문자열로 바꿔줌(key : '', value : '')
+      }), cb);
+    },
     delete : function (url, cb) {
         return this.send(fetch(url, {
             'method': 'delete',

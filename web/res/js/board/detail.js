@@ -146,6 +146,57 @@
             const modBtn = document.createElement('input');
             modBtn.type = 'button';
             modBtn.value = '수정';
+            modBtn.addEventListener('click',() => {
+                const tdArr = tr.querySelectorAll('td');
+                const tdCell = tdArr[1];
+                console.log(td);
+
+                const modInput = document.createElement('input');
+                input.value = item.ctnt;
+                const saveBtn = document.createElement('input');
+                saveBtn.type = 'button';
+                saveBtn.value = '저장';
+                saveBtn.addEventListener('click', () => {
+                    const param = {
+                        icmt : item.icmt,
+                        ctnt : modInput.value
+                    }
+                    myFetch.put('/board/cmt', (data) => {
+                        switch (data.result) {
+                            case 0:
+                                alert('댓글 수정에 실패하였습니다.')
+                                break;
+                            case 1:
+                                item.ctnt = modInput.value;
+                                removeCancel();
+                                break;
+                        }
+                    }, param);
+                });
+
+                tdCell.innerHTML = null;
+                tdCell.appendChild(input);
+                tdCell.appendChild(saveBtn);
+
+                const cancelBtn = document.createElement('input');
+                cancelBtn.type = 'button';
+                cancelBtn.value = '취소';
+                cancelBtn.addEventListener('click', () => {
+                    tdCell.innerText = item.ctnt;
+                    removeCancel();
+                })
+
+                const removeCancel = () => {
+                    modBtn.classList.remove('hidden');//toggle : 있으면 빼주고 없으면 넣어준다., 불안하니까 add 나중에 remove 도 해주면됨
+                    delBtn.classList.remove('hidden');
+                    cancelBtn.remove();
+                }
+
+                td.insertBefore(cancelBtn, modBtn);//중간에 넣는 modBtn 앞에 cancelBtn 넣겠다
+                modBtn.classList.add('hidden');//toggle : 있으면 빼주고 없으면 넣어준다., 불안하니까(가끔 꼬인답니다) add 나중에 remove 도 해주면됨
+                delBtn.classList.add('hidden');
+
+            });
 
             const delBtn = document.createElement('input');
             delBtn.type = 'button';
