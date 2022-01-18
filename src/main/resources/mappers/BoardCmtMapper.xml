@@ -3,8 +3,8 @@
         "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dev.hjjoo.community.board.cmt.BoardCmtMapper">
-
-    <insert id="insBoardCmt">
+    <!--keyProperty 값은 Auto Increment 된 값을 가져올수 있다. Auto Increment 값을 icmt 에 넣겠다.-->
+    <insert id="insBoardCmt" useGeneratedKeys="true" keyProperty="icmt">
         INSERT INTO t_board_cmt
         (iboard, iuser, ctnt)
         VALUES

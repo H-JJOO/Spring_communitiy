@@ -4,7 +4,9 @@
 <div id="data"
      data-icategory="${data.icategory}"
      data-iboard="${data.iboard}"
-     data-iuser="${sessionScope.loginUser.iuser}">
+     data-nm="${sessionScope.loginUser.nm}"
+     data-iuser="${sessionScope.loginUser.iuser}"
+     data-profileimg="${sessionScope.loginUser.profileimg}">
 </div>
 <div>
     <c:if test="${requestScope.prevNext.previboard > 0}">

@@ -20,7 +20,7 @@ public class BoardCmtController {
 
     @PostMapping
     public Map<String, Integer> insBoardCmt(@RequestBody BoardCmtEntity entity) {//JSON 으로 넘어오는 것을 컴버팅 해준다. (JSON 으로 넘어온다고 알려주는 역할, JSON 으로 넘어오면 반드시 있어야할 어노테이션!)[C]
-        System.out.println(entity);
+        System.out.println(entity);//iboard, ctnt
         Map<String, Integer> result = new HashMap<>();
         result.put("result", service.insBoardCmt(entity));
         return result;

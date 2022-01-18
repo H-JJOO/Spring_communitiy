@@ -17,6 +17,7 @@
     <title><tiles:insertAttribute name="title"/></title>
 </head>
 <body>
+<%--    <span id="gdata"></span>--%>
     <div id="container">
         <tiles:insertAttribute name="header"/>
         <section>
