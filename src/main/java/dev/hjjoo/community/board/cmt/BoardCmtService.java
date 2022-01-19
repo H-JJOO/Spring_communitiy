@@ -28,6 +28,11 @@ public class BoardCmtService {
         return mapper.selBoardCmtList(entity);
     }
 
+    public int updBoardCmt(BoardCmtEntity entity) {
+        entity.setIuser(userUtils.getLoginUserPk());
+        return mapper.updBoardCmt(entity);
+    }
+
     public int delBoardCmt(int icmt) {
         BoardCmtEntity entity = new BoardCmtEntity();
         entity.setIcmt(icmt);

@@ -32,6 +32,13 @@ public class BoardCmtController {
         return service.selBoardCmtList(iboard);
     }
 
+    @PutMapping//[U]
+    public Map<String, Integer> updBoardCmt(@RequestBody BoardCmtEntity entity) {
+        Map<String, Integer> result = new HashMap<>();
+        result.put("result", service.updBoardCmt(entity));
+        return result;
+    }
+
     @DeleteMapping("/{icmt}")//메소드를 구분하기위한 어노테이션 [D]
     public Map<String, Integer> delBoardCmt(@PathVariable int icmt) {
         Map<String, Integer> result = new HashMap<>();

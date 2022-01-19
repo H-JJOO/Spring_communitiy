@@ -2,6 +2,9 @@
 
 a { text-decoration: none; color: black; }
 
+html { scroll-behavior: smooth;}
+html, body { height: 100%; }
+
 ul, li {list-style: none; margin: 10px;}
 
 h1  {color: yellow; }
@@ -21,11 +24,11 @@ h1  {color: yellow; }
 
 h1 {margin-bottom: 20px;}
 
-input {margin-bottom: 3px; width: 100%;}
+input {margin-bottom: 3px; }
 
 section {margin: 1%; border: 1px solid black; padding: 5px;}
 
-html, body { height: 100%; scroll-behavior: auto;}
+
 header { background-color: yellow; }
 
 footer { background-color: black; color: white; display: flex; flex-direction: row; justify-content: center; align-items: center; }

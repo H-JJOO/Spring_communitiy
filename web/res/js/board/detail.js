@@ -43,6 +43,13 @@
             }
         });
 
+    window.scrollTo(0, document.body.scrollHeight);
+
+    const submitBtnElem = cmtFrmElem.querySelector('#btn_submit');
+    submitBtnElem.addEventListener("scroll", () => {
+
+    })
+
         //Ajax : 댓글입력
         const insBoardCmtAjax = (val) => {
             const param = {//{ = 다음 시작은 객체생성(key, value), function 으로 new 도 가능
@@ -51,7 +58,7 @@
             };
             myFetch.post('/board/cmt', (data) => {
                 console.log('result : ' + data.result);
-                switch (data.result) {
+                switch (data.result) {//data.result 에 icmt 값이 넘어온다.
                     case 0:
                         alert('댓글 등록에 실패하였습니다.');
                         break;
@@ -76,6 +83,7 @@
                         table.appendChild(tr);
 
                         cmtFrmElem.ctnt.value = null;
+                        window.scrollTo(0, document.body.scrollHeight);
                         break;
                 };
             }, param);
@@ -152,7 +160,7 @@
                 console.log(td);
 
                 const modInput = document.createElement('input');
-                input.value = item.ctnt;
+                modInput.value = item.ctnt;
                 const saveBtn = document.createElement('input');
                 saveBtn.type = 'button';
                 saveBtn.value = '저장';
@@ -176,7 +184,7 @@
                 });
 
                 tdCell.innerHTML = null;
-                tdCell.appendChild(input);
+                tdCell.appendChild(modInput);
                 tdCell.appendChild(saveBtn);
 
                 const cancelBtn = document.createElement('input');
