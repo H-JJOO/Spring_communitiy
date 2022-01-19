@@ -47,6 +47,7 @@ th, td {padding: 7px; }
 .font-color-black { color: #000;}
 .font-size-5 {font-size: 5px;}
 .font-size-20 {font-size: 20px;}
+.font-size-30 {font-size: 30px;}
 
 .grid {display: grid;}
 
@@ -67,6 +68,7 @@ th, td {padding: 7px; }
 
 .m {margin: 0;}
 .m-5 {margin: 5px;}
+.m-10 {margin: 10px;}
 .m-20 {margin: 20px;}
 .m-r-5 {margin-right: 5px;}
 .m-r-10 { margin-right: 10px; }
@@ -110,7 +112,11 @@ th, td {padding: 7px; }
 .w-250 {width: 250px;}
 .w-300 {width: 300px;}
 .w-400 {width: 400px;}
+.w-450 {width: 450px;}
+.w-500 {width: 500px;}
 
 #container { min-height: 100%; display: grid; grid-template-rows: 50px 1fr 50px; }
 
-
+.input > table > tr > td > input{
+    width: 100%;
+}

@@ -172,7 +172,7 @@
                     myFetch.put('/board/cmt', (data) => {
                         switch (data.result) {
                             case 0:
-                                alert('댓글 수정에 실패하였습니다.')
+                                alert('댓글 수정에 실패하였습니다.');
                                 break;
                             case 1:
                                 tdCell.innerText = modInput.value;
@@ -246,9 +246,71 @@
         return trArr.length;
 
     }
-
     getCmtList();
 
+    //좋아요 --------------------------------------------------------------------[start] ----------------
+    const favIconElem = document.querySelector('#fav_icon');
+    
+    const isFav = () => {
+        const iboard = dataElem.dataset.iboard;
+        myFetch.get(`/board/fav/${iboard}`, (data) => {
+            switch (data.result) {
+                case 0:
+                    disableFav();
+                    break;
+                case 1:
+                    enableFav();
+                    break;
+            }
+        });
+    }
+
+    const disableFav = () => {
+        if (favIconElem) {
+            favIconElem.classList.remove('fas');
+            favIconElem.classList.add('far');
+        }
+    }
+
+    const enableFav = () => {
+        if (favIconElem) {
+            favIconElem.classList.remove('far');
+            favIconElem.classList.add('fas');
+        }
+    }
+
+    if(dataElem.dataset.iuser) {//로그인 했다면
+        isFav();
+        favIconElem.addEventListener('click', () => {
+            const iboard = dataElem.dataset.iboard;
+            //classList.contains : 값이 존재하는지 체크한다.(true/false)
+            if (favIconElem.classList.contains('far')) {//no 좋아요
+                const param = { iboard };//es6문법, 객체만들때 iboard 만 넣음, 'iboard' : iboard 랑 같음
+                myFetch.post(`/board/fav`, (data) => {
+                    switch (data.result) {
+                        case 0 :
+                            alert('좋아요 처리에 실패하였습니다.');
+                            break;
+                        case 1 : 
+                            enableFav();
+                            break;
+                    }
+                }, param);
+            } else {//yes 좋아요
+                myFetch.delete(`/board/fav/${iboard}`, (data) => {
+                    switch (data.result) {
+                        case 0 : 
+                            alert('좋아요 처리에 실패하였습니다.');
+                            break;
+                        case 1:
+                            disableFav();
+                            break;
+                    }
+                });
+            }
+        });
+    }
+    //좋아요 --------------------------------------------------------------------[end] ----------------
 }
 
 // Restful API > POST, GET, PUT, DELETE
