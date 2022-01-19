@@ -9,19 +9,16 @@
      data-profileimg="${sessionScope.loginUser.profileimg}">
 </div>
 <div>
-    <c:if test="${requestScope.prevNext.previboard > 0}">
-        <a href="/board/detail?iboard=${requestScope.prevNext.previboard}"><button class="bac-color-yellow m-5 border border-025 font-color-black w-60 h-20 pointer">이전글</button></a>
-    </c:if>
-    <c:if test="${requestScope.prevNext.nextiboard > 0}">
-        <a href="/board/detail?iboard=${requestScope.prevNext.nextiboard}"><button class="bac-color-yellow m-5 border border-025 font-color-black w-60 h-20 pointer">다음글</button></a>
-    </c:if>
-</div>
+    <a href="/board/detail?iboard=${requestScope.prevNext.previboard}" class="${requestScope.prevNext.previboard == 0 ? 'invisibility' : ''}"><button class="bac-color-yellow m-5 border border-025 font-color-black w-60 h-20 pointer">이전글</button></a>
+    <a href="/board/detail?iboard=${requestScope.prevNext.nextiboard}" class="${requestScope.prevNext.nextiboard == 0 ? 'invisibility' : ''}"><button class=" bac-color-yellow m-5 border border-025 font-color-black w-60 h-20 pointer">다음글</button></a>
 <c:if test="${sessionScope.loginUser != null}">
     <!--좋아요-->
-        <i id="fav_icon" class="pointer far fa-thumbs-up font-size-30 m-10"></i>
+    <i id="fav_icon" class="pointer far fa-thumbs-up font-size-30 m-10"></i>
 </c:if>
 
 <c:if test="${sessionScope.loginUser.iuser == data.iuser}">
+</div>
+
     <div>
         <button class="bac-color-yellow m-5 border border-025 font-color-black w-60 h-20 pointer" id="modBtn">수정</button>
         <button class="bac-color-yellow m-5 border border-025 font-color-black w-60 h-20 pointer" id="delBtn">삭제</button>
