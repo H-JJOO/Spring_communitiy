@@ -1,5 +1,5 @@
 {
-    let idChkState = 2; //0: 체크 안함, 0: 아이디 사용 불가능, 1: 아이디 사용가능, 2: 체크 안함
+    let idChkState = 2; //0: 아이디 사용 불가능, 1:아이디 사용가능, 2: 체크 안함
 
     const joinFrmElem = document.querySelector('#join-frm');
     const idRegex = /^([a-zA-Z0-9]{4,15})$/; //대소문자 + 숫자 조합으로 4~15글자 인 경우만 OK!

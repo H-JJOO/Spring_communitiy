@@ -62,8 +62,6 @@ public class BoardController {
 
     }
 
-
-
     @GetMapping("/mod")
     public String mod(BoardDto dto, Model model)  {
         model.addAttribute(Const.DATA, service.selBoard(dto));
