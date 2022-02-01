@@ -15,17 +15,14 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class UserService {
 
-    @Autowired
-    private UserMapper mapper;
+    @Autowired private UserMapper mapper;
 
-    @Autowired
-    private UserUtils userUtils;
+    @Autowired private UserUtils userUtils;
 
-    @Autowired
-    private MyFileUtils myFileUtils;
+    @Autowired private MyFileUtils myFileUtils;
 
     public int login(UserEntity entity) {
-        UserEntity dbUser = null;
+            UserEntity dbUser = null;
         try{
             dbUser = mapper.selUser(entity);
         } catch (Exception e) {
